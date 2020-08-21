@@ -3,18 +3,19 @@ FROM    centos:8
 RUN     yum install -y wget which git java-1.8.0-openjdk perl python3-pip
 
 RUN     mkdir /apps && \
-        cd /apps && \
-        git clone https://github.com/marbl/merqury.git && \
+        cd /apps
+
+RUN     pwd && git clone https://github.com/marbl/merqury.git && \
         wget -q -O meryl.tar.gz 'https://github.com/marbl/meryl/releases/download/v1.0/meryl-1.0.Linux-amd64.tar.xz' && \
         tar xf meryl.tar.gz && \
         rm meryl.tar.gz
 
-RUN     wget -q -O fastqc_v0.11.9.zip 'https://www.bioinformatics.babraham.ac.uk/projects/fastqc/fastqc_v0.11.9.zip' && \
+RUN     pwd && wget -q -O fastqc_v0.11.9.zip 'https://www.bioinformatics.babraham.ac.uk/projects/fastqc/fastqc_v0.11.9.zip' && \
 	    unzip fastqc_v0.11.9.zip && \
         ls -ahl . && \
         rm fastqc_v0.11.9.zip
 
-RUN     wget -q -O Trimmomatic-0.39.zip 'http://www.usadellab.org/cms/uploads/supplementary/Trimmomatic/Trimmomatic-0.39.zip' && \
+RUN     pwd && wget -q -O Trimmomatic-0.39.zip 'http://www.usadellab.org/cms/uploads/supplementary/Trimmomatic/Trimmomatic-0.39.zip' && \
         unzip Trimmomatic-0.39.zip && \
         rm Trimmomatic-0.39.zip
 
