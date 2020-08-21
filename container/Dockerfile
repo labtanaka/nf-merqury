@@ -11,6 +11,7 @@ RUN     mkdir /apps && \
 
 RUN     wget -q -O fastqc_v0.11.9.zip 'https://www.bioinformatics.babraham.ac.uk/projects/fastqc/fastqc_v0.11.9.zip' && \
 	    unzip fastqc_v0.11.9.zip && \
+        ls -ahl . && \
         rm fastqc_v0.11.9.zip
 
 RUN     wget -q -O Trimmomatic-0.39.zip 'http://www.usadellab.org/cms/uploads/supplementary/Trimmomatic/Trimmomatic-0.39.zip' && \
