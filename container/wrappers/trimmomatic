@@ -1,0 +1,21 @@
+#!/bin/bash
+
+TRIMMOMATIC_OPTS=()
+JAVA_OPTS=()
+
+while [[ $# > 0 ]]
+do
+    item="$1"
+    case "$item" in
+         -Xmx*)
+         JAVA_OPTS+=("$item")
+         ;;
+         *)
+		 TRIMMOMATIC_OPTS+=("$item")
+         ;;
+    esac
+    shift
+done
+
+
+java "${JAVA_OPTS[@]}" -jar /apps/Trimmomatic-0.39/trimmomatic-0.39.jar "${TRIMMOMATIC_OPTS[@]}"

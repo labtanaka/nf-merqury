@@ -21,12 +21,14 @@ RUN     yum install -y java-1.8.0-openjdk libgomp perl python3-pip tbb && \
         pip3 install biopython && \
         pip3 install multiqc
 
+COPY	./wrappers/trimmomatic /apps/Trimmomatic-0.39/trimmomatic
+
 RUN	    useradd -ms /bin/bash localuser
 
 RUN     chmod +x /apps/meryl-1.0/Linux-amd64/bin/* && \
         chmod +x /apps/merqury/*.sh && \
         chmod +x /apps/merqury/eval/*.sh && \
-        chmod +x /apps/trimmomatic && \
+        chmod +x /apps/Trimmomatic-0.39/trimmomatic && \
 	    chmod +x /apps/FastQC/fastqc && \
 	    chown -R localuser /apps
 
