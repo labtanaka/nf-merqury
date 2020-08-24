@@ -14,7 +14,6 @@ RUN     cd /apps && \
 RUN     cd /apps && \
         wget -q -O fastqc_v0.11.9.zip 'https://www.bioinformatics.babraham.ac.uk/projects/fastqc/fastqc_v0.11.9.zip' && \
 	    unzip fastqc_v0.11.9.zip && \
-        ls -ahl . && \
         rm fastqc_v0.11.9.zip
 
 RUN     cd /apps && \
@@ -28,16 +27,17 @@ RUN     yum install -y java-1.8.0-openjdk libgomp perl python3-pip tbb && \
 
 COPY	./wrappers/trimmomatic /apps/Trimmomatic-0.39/trimmomatic
 
-RUN	    useradd -ms /bin/bash localuser
+RUN	useradd -ms /bin/bash localuser
 
 RUN     chmod +x /apps/meryl-1.0/Linux-amd64/bin/* && \
         chmod +x /apps/merqury/*.sh && \
         chmod +x /apps/merqury/eval/*.sh && \
         chmod +x /apps/Trimmomatic-0.39/trimmomatic && \
-	    chmod +x /apps/FastQC/fastqc && \
-	    chown -R localuser /apps
+	chmod +x /apps/FastQC/fastqc && \
+	chown -R localuser /apps
 
-ENV     PATH=${PATH}:/apps/FastQC:/apps/Trimmomatic-0.39:/apps/meryl-1.0/Linux-amd64/bin:/apps/merqury/eval
+ENV     PATH=${PATH}:/apps/FastQC:/apps/Trimmomatic-0.39:/apps/meryl-1.0/Linux-amd64/bin:/apps/merqury/eval:/apps/merqury/util
+ENV     MERQURY=/apps/merqury
 
 USER 	localuser
 WORKDIR /home/localuser
